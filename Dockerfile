@@ -1,23 +1,22 @@
-# ベースイメージとして公式のPythonイメージを使用
+# Use the official Python image.
+# https://hub.docker.com/_/python
 FROM python:3.9-slim
 
-# 作業ディレクトリの作成
+# Set the working directory to /app
 WORKDIR /python
 
-# 必要なパッケージをインストール
-RUN apt-get update && apt-get install -y \
-    python3-opencv \
-    && /bin/rm -rf /var/lib/apt/lists/*
+# Copy the current directory contents into the container at /app
+COPY . /python
 
-# アプリケーションの依存関係をインストール
-COPY requirements.txt requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# アプリケーションコードをコンテナ内にコピー
-COPY . .
-
-# ポートの設定
+# Make port 8080 available to the world outside this container
 EXPOSE 5000
 
-# コンテナ起動時に実行されるコマンド
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
 CMD ["python", "detect.py"]
+
