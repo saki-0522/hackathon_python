@@ -184,6 +184,7 @@ def generate_frames():
     capture = cv2.VideoCapture(0)
     capture.set(3, 640)  # 幅
     capture.set(4, 360)  # 高さ
+    flag = 0
 
     # カスケードファイルの読み込み
     face_cascade = cv2.CascadeClassifier('./src/haarcascade_frontalface_default.xml')
@@ -217,6 +218,7 @@ def generate_frames():
                 smile_start_time = time.time()
             elif time.time() - smile_start_time >= 2:
                 print("smile detected")
+                flag = 1
                 break
         else:
             smile_start_time = None
@@ -230,17 +232,18 @@ def generate_frames():
         # 経過時間のチェック
         if time.time() - start_time > 10:
             print("time end")
+
             break
 
     capture.release()
     cv2.destroyAllWindows()
-    print("Exit")
+    # print("Exit")
+    print(flag)
+    return flag
 
 @app.route('/')
 def index():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    load_dotenv()
-    port = int(os.getenv('LOCAL', '5000'))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=5000)
