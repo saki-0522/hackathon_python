@@ -251,6 +251,7 @@
 #     app.run(debug=True, host='0.0.0.0', port=5000)
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import cv2
 import numpy as np
 import base64
@@ -258,6 +259,8 @@ import os
 import logging
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # ログの設定
 logging.basicConfig(level=logging.INFO)
