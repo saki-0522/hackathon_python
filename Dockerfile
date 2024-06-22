@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install opencv-python
 RUN pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.4.0rc0-cp36-cp36m-linux_x86_64.whl
 
-COPY requirements.txt
+COPY  requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . .
