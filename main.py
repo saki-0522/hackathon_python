@@ -265,8 +265,8 @@ logger = logging.getLogger(__name__)
 
 # XMLファイルのパスを設定
 current_dir = os.path.dirname(os.path.abspath(__file__))
-face_cascade_path = os.path.join(current_dir, 'haarcascade_frontalface_default.xml')
-smile_cascade_path = os.path.join(current_dir, 'haarcascade_smile.xml')
+face_cascade_path = os.path.join(current_dir, 'src/haarcascade_frontalface_default.xml')
+smile_cascade_path = os.path.join(current_dir, 'src/haarcascade_smile.xml')
 
 logger.info(f"現在のディレクトリ: {current_dir}")
 logger.info(f"顔検出XMLファイルパス: {face_cascade_path}")
