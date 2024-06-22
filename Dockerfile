@@ -21,4 +21,4 @@ EXPOSE 5000
 
 COPY . .
 
-CMD ["python3", "/main.py"]
+CMD ["python3", "main.py"]
